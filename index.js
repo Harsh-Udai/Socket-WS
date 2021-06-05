@@ -4,7 +4,7 @@
 //     },
 // });
 
-const io = require('socket.io')('https://resourcesharingio.netlify.app/');
+const io = require('socket.io')('http://localhost:3000');
 
 let users = [];
 
