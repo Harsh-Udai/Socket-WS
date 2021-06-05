@@ -1,8 +1,10 @@
-const io = require('socket.io')({
-    cors:{
-        origin: 'https://resourcesharingio.netlify.app/',
-    },
-});
+// const io = require('socket.io')(process.env.PORT,{
+//     cors:{
+//         origin: 'https://resourcesharingio.netlify.app/',
+//     },
+// });
+
+const io = require('socket.io')('https://resourcesharingio.netlify.app/');
 
 let users = [];
 
@@ -46,5 +48,3 @@ io.on("connection",(socket)=>{
         io.emit('getUsers', users);
     })
 })
-
-io.listen(process.env.PORT)
