@@ -1,10 +1,10 @@
-// const io = require('socket.io')(process.env.PORT,{
-//     cors:{
-//         origin: 'https://resourcesharingio.netlify.app/',
-//     },
-// });
+const io = require('socket.io')(process.env.PORT || 5000,{
+    cors:{
+        origin: 'https://resourcesharingio.netlify.app',
+    },
+});
 
-const io = require('socket.io')('http://localhost:3000');
+// const io = require('socket.io')('http://localhost:3000');
 
 let users = [];
 
