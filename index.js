@@ -1,4 +1,4 @@
-const io = require('socket.io')(8900,{
+const io = require('socket.io')(process.env.PORT,{
     cors:{
         origin: 'http://localhost:3000',
     },
@@ -20,20 +20,15 @@ const getUser = (userId)=>{
 }
 
 io.on("connection",(socket)=>{
-    //when connect
     console.log("a user connnected");
-
     //take userId and socketId from user
     socket.on('addUser',userId=>{
         if(userId!==""){
             addUser(userId,socket.id);
             io.emit('getUsers', users);
         }
-        
     })
-
     //send and get message
-
     socket.on("sendMessage",({senderId,receiverId,text})=>{
         const user = getUser(receiverId);
         if(user){
@@ -43,15 +38,11 @@ io.on("connection",(socket)=>{
             })
         }
     })
-
-
     // when disconnect
-
     socket.on('disconnect',()=>{
         console.log('a user got disconnected');
         removeUser(socket.id);
         console.log(users);
         io.emit('getUsers', users);
     })
-
 })
