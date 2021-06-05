@@ -3,6 +3,8 @@ const io = require('socket.io')(process.env.PORT,{
         origin: 'http://localhost:3000',
     },
 });
+io.set('transports', ['websocket']);
+
 
 let users = [];
 
